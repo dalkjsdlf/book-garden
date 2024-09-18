@@ -1,0 +1,39 @@
+debug: true
+management:
+  endpoints:
+    web:
+      exposure:
+        exclude: "*"
+
+logging:
+  level:
+    io.ratel.bookgarden : debug
+    org.springframework.web.servlet: debug
+    org.hibernate.type.descriptor.sql.internal: trace
+    org.springframework.beans.factory.support.DefaultListableBeanFactory: ERROR
+    org.springframework.boot.autoconfigure: ERROR
+
+
+spring:
+  application:
+    name: book-garden
+
+server:
+  port: 8500
+
+---
+spring:
+  profiles:
+    group:
+      test: test_profile
+      local: local_profile
+      dev: dev_profile
+      cbt: cbt_profile
+      prod: prod_profile
+default:
+  string: default property
+
+aladdin:
+  url: http://www.aladin.co.kr/ttb/api
+  api:
+    key: ttbdalkjsdlf2332001
