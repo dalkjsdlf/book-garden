@@ -1,5 +1,6 @@
 package io.ratel.bookgarden.domain.userbook.entity;
 
+import io.ratel.bookgarden.common.persistence.entity.AuditableFields;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -12,7 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserBookEntity {
+public class UserBookEntity extends AuditableFields {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

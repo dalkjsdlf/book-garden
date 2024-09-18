@@ -5,7 +5,6 @@ import io.ratel.bookgarden.common.constants.WebApiConst;
 import io.ratel.bookgarden.domain.userbook.entity.Yn;
 import io.ratel.bookgarden.web_api.userbook.application.UserBookApplication;
 import io.ratel.bookgarden.web_api.userbook.controller.UserBookController;
-import io.ratel.bookgarden.web_api.userbook.dto.UserBookGetResponseDto;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -19,11 +18,9 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.util.List;
-
-import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest
 @ActiveProfiles("test")
@@ -51,25 +48,13 @@ public class UserBookControllerTest {
         Long userId = 1L;
         String title = "Book Title";
         Yn yn = Yn.Y;
-        UserBookGetResponseDto responseDto = UserBookGetResponseDto.builder().
-                title(title).
-                id(1L).
-                cover("image URL").
-                author("choi").
-                publisher("pub").
-                readCmpYn(yn).
-                build();
-
-        when(userBookApplication.getUserBooks(userId)).thenReturn(List.of(responseDto));
-
-        mockMvc.perform(get("/api/v1/userbooks")
-                        .header(WebApiConst.USER_ID_HEADER, userId)
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].title").value(title))
-                .andExpect(jsonPath("$[0].readCmpYn").value(yn));
-
-
+        mockMvc.perform(get("/api/v1/userbooks").
+                        header(WebApiConst.USER_ID_HEADER, userId).
+                        contentType(MediaType.APPLICATION_JSON).
+                        accept(MediaType.APPLICATION_JSON)).
+                andExpect(status().isOk()).
+                andExpect(jsonPath("$[0].title").value(title)).
+                andExpect(jsonPath("$[0].readCmpYn").value(yn));
     }
 /*
     @Test

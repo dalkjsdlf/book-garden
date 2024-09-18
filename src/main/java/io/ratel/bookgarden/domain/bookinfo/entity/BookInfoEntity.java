@@ -7,10 +7,11 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Table(name = "BOOK_INFO")
 @Entity
+@Table(name = "BOOK_INFO")
 @Getter
 public class BookInfoEntity extends AuditableFields {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
@@ -86,15 +87,16 @@ public class BookInfoEntity extends AuditableFields {
                                     LocalDateTime publishedDate) {
 
         return new BookInfoEntity(title,
-                                  author,
-                                  publisher,
-                                  description,
-                                  category,
-                                  link,
-                                  isbn,
-                                  isbn13,
-                                  cover,
-                                  publishedDate);
+                author,
+                publisher,
+                description,
+                category,
+                link,
+                isbn,
+                isbn13,
+                cover,
+                publishedDate);
     }
 
 }
+
