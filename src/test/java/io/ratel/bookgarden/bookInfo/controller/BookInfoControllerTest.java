@@ -44,6 +44,7 @@ public class BookInfoControllerTest {
         String url    = TestConstant.CONST_SERVER_URL + "books";
         //when
         ResultActions resultActions = mockMvc.perform(get(url).
+                accept(MediaType.APPLICATION_JSON).
                 header("X_USER_ID",userId).
                 contentType(MediaType.APPLICATION_JSON));
         //then
@@ -61,6 +62,7 @@ public class BookInfoControllerTest {
         String title  = "Spring Boot Guide";
         //when
         ResultActions resultActions = mockMvc.perform(get(url).
+                accept(MediaType.APPLICATION_JSON).
                 header("X_USER_ID",userId).
                 param("title",title).
                 contentType(MediaType.APPLICATION_JSON));

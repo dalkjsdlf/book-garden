@@ -27,4 +27,5 @@ _김하나(작가, [여둘톡] 팟캐스터)
 
 자유로운 인간이 된다는 것은 아무런 기대 없이, 스스로의 명랑성과 가벼운 마음가짐(평온함)에 기대는 것이라 하겠다. 이렇게 지구 한 귀퉁이에서 덤덤하고 조용하게 사는 즐거움을 저렇게 요란한 유명인들은 모를걸! (49쪽, ‘야, 이노무 자슥들아’)', 'ESSAY', 'http://example.com/spring-boot-guide', 1194184030, 9791194184034, 'https://image.yes24.com/goods/132565140/XL', now(), 'SYSTEM', 'SYSTEM');
 
-INSERT INTO USER_BOOK(USER_ID,BOOK_ID,READ_CMP_YN) VALUES(1,1,'N');
+INSERT INTO USER_BOOK(USER_ID,BOOK_ID,READ_CMP_YN, CREATED_BY, MODIFIED_BY) VALUES(1,1,'N', 'SYSTEM', 'SYSTEM');
+INSERT INTO USER_INFO(NAME, EMAIL, PASSWORD, CREATED_BY, MODIFIED_BY) VALUES('yeonho choi', 'dalkjsdlf@naver.com','password1234', 'SYSTEM', 'SYSTEM');

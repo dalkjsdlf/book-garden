@@ -16,10 +16,7 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableJpaRepositories(
-        basePackages = {"io.ratel.bookgarden.web_api.bookinfo",
-                        "io.ratel.bookgarden.domain.bookinfo",
-                "io.ratel.bookgarden.web_api.userbook",
-                "io.ratel.bookgarden.domain.userbook"},
+        basePackages = "io.ratel.bookgarden.domain",
         entityManagerFactoryRef = "bookGardenEntityManagerFactory",
         transactionManagerRef = "bookGardenTransactionManager"
 )
@@ -36,10 +33,7 @@ public class BookGardenDbConfig {
             EntityManagerFactoryBuilder builder, @Qualifier("bookGardenDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("io.ratel.bookgarden.domain.userbook",
-                        "io.ratel.bookgarden.web-api.userbook",
-                        "io.ratel.bookgarden.domain.bookinfo",
-                          "io.ratel.bookgarden.web-api.bookinfo")  // BookGarden 엔티티 클래스 패키지
+                .packages("io.ratel.bookgarden.domain")  // BookGarden 엔티티 클래스 패키지
                 .persistenceUnit("bookGardenPersistenceUnit")
                 .build();
     }
