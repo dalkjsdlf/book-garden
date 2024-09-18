@@ -18,14 +18,14 @@ public class UserInfoRepositoryImpl implements UserInfoRepository{
     private final JPAQueryFactory queryFactory;
 
     @Override
-    public List<UserInfoEntity> findAll() {
+    public List<UserInfoEntity> selectAll() {
         return queryFactory.
                 selectFrom(userInfoEntity).
                 fetch();
     }
 
     @Override
-    public Optional<UserInfoEntity> findById(Long id) {
+    public Optional<UserInfoEntity> selectById(Long id) {
         return Optional.ofNullable(
                 queryFactory.
                         selectFrom(userInfoEntity).

@@ -14,10 +14,10 @@ public class UserInfoService {
     private final UserInfoRepository userInfoRepository;
 
     public List<UserInfoEntity>  getUsers(){
-        return userInfoRepository.findAll();
+        return userInfoRepository.selectAll();
     }
 
     public UserInfoEntity getUserById(Long id){
-        return userInfoRepository.findById(id).orElse(null);
+        return userInfoRepository.selectById(id).orElse(null);
     }
 }

@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserInfoRepository {
 
-    public List<UserInfoEntity> findAll();
+    public List<UserInfoEntity> selectAll();
 
-    public Optional<UserInfoEntity> findById(Long id);
+    public Optional<UserInfoEntity> selectById(Long id);
 }

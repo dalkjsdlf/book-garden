@@ -36,7 +36,7 @@ public class UserInfoReposiotoryTest {
         //given
 
         //when
-        List<UserInfoEntity> users = userInfoRepository.findAll();
+        List<UserInfoEntity> users = userInfoRepository.selectAll();
 
         Log.debug("#DEBUG users size: {}", users.size());
 
@@ -53,7 +53,7 @@ public class UserInfoReposiotoryTest {
         Long userId = 1L;
 
         //when
-        Optional<UserInfoEntity> optUserInfo = userInfoRepository.findById(userId);
+        Optional<UserInfoEntity> optUserInfo = userInfoRepository.selectById(userId);
 
         UserInfoEntity userInfoEntity = optUserInfo.orElseThrow(()->new BusinessException(BusinessErrorResult.USER_INFO_NOT_FOUND));
 
