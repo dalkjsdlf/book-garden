@@ -3,6 +3,7 @@ package io.ratel.bookgarden.userinfo.controller;
 import io.ratel.bookgarden.common.aop.ApiControllerAdvice;
 import io.ratel.bookgarden.common.constants.WebApiConst;
 import io.ratel.bookgarden.web_api.userinfo.controller.UserInfoController;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -20,7 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
+@Transactional
 @DisplayName("사용자정보 컨트롤러 조회 테스트")
 @SpringBootTest
 @ActiveProfiles("test")

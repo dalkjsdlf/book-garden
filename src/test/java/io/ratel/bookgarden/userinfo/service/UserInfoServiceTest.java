@@ -2,6 +2,7 @@ package io.ratel.bookgarden.userinfo.service;
 
 import io.ratel.bookgarden.domain.userInfo.entity.UserInfoEntity;
 import io.ratel.bookgarden.domain.userInfo.service.UserInfoService;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -13,7 +14,7 @@ import org.springframework.test.context.ActiveProfiles;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
+@Transactional
 @DisplayName("사용자 정보 서비스 조회 테스트")
 @SpringBootTest
 @ActiveProfiles("test")

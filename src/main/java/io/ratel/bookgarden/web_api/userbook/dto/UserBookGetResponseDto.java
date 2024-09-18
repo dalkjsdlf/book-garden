@@ -3,7 +3,10 @@ package io.ratel.bookgarden.web_api.userbook.dto;
 import io.ratel.bookgarden.domain.bookinfo.entity.BookInfoEntity;
 import io.ratel.bookgarden.domain.userbook.entity.UserBookEntity;
 import io.ratel.bookgarden.domain.userbook.entity.Yn;
+import io.ratel.bookgarden.web_api.journal.dto.JournalGetResponseDto;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
