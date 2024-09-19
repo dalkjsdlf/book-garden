@@ -4,6 +4,7 @@ import io.ratel.bookgarden.common.exception.BusinessErrorResult;
 import io.ratel.bookgarden.common.exception.BusinessException;
 import io.ratel.bookgarden.domain.userInfo.entity.UserInfoEntity;
 import io.ratel.bookgarden.domain.userInfo.repository.UserInfoRepository;
+import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -17,16 +18,16 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@Transactional
 @DisplayName("사용자 정보 테스트")
 @SpringBootTest
 @ActiveProfiles("test")
-public class UserInfoReposiotoryTest {
+public class UserInfoRepositoryTest {
 
     @Autowired
     private UserInfoRepository userInfoRepository;
 
-    private final Logger Log = LoggerFactory.getLogger(UserInfoReposiotoryTest.class);
+    private final Logger Log = LoggerFactory.getLogger(UserInfoRepositoryTest.class);
 
     private boolean isTestWithInitData = false;
 

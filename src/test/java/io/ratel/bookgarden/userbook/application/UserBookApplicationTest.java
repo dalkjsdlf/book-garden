@@ -21,7 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ActiveProfiles("test")
 public class UserBookApplicationTest {
 
-    private Logger LOGGER = LoggerFactory.getLogger(UserBookApplicationTest.class);
+    private Logger log = LoggerFactory.getLogger(UserBookApplicationTest.class);
 
     @Autowired
     private UserBookApplication userBookApplication;
@@ -34,9 +34,9 @@ public class UserBookApplicationTest {
 
         //when
         List<UserBookGetResponseDto> userBookGetResponseDtos = userBookApplication.getUserBooks(userId);
-        LOGGER.debug("조회한 도서정보 타이틀 {}", userBookGetResponseDtos.get(0).getTitle());
-        LOGGER.debug("조회한 도서정보 커버이미지 {}", userBookGetResponseDtos.get(0).getCover());
-        LOGGER.debug("조회한 도서정보 완독여부 {}", userBookGetResponseDtos.get(0).getReadCmpYn());
+        log.debug("조회한 도서정보 타이틀 {}", userBookGetResponseDtos.get(0).getTitle());
+        log.debug("조회한 도서정보 커버이미지 {}", userBookGetResponseDtos.get(0).getCover());
+        log.debug("조회한 도서정보 완독여부 {}", userBookGetResponseDtos.get(0).getReadCmpYn());
 
         //then
         assertThat(userBookGetResponseDtos.size()).isGreaterThan(0);
@@ -51,12 +51,14 @@ public class UserBookApplicationTest {
 
         //when
         UserBookDetailGetResponseDto userBookDetailGetResponseDto = userBookApplication.getUserBookById(userBookId);
-        LOGGER.debug("조회한 도서정보 타이틀 {}", userBookDetailGetResponseDto.getTitle());
-        LOGGER.debug("조회한 도서정보 저자 {}", userBookDetailGetResponseDto.getAuthor());
-        LOGGER.debug("조회한 도서정보 설명 {}", userBookDetailGetResponseDto.getDescription());
+        log.debug("#DEBUG 조회한 도서정보 타이틀 {}", userBookDetailGetResponseDto.getTitle());
+        log.debug("#DEBUG 조회한 도서정보 저자 {}", userBookDetailGetResponseDto.getAuthor());
+        log.debug("#DEBUG 조회한 도서정보 설명 {}", userBookDetailGetResponseDto.getDescription());
+        log.debug("#DEBUG 독서기록 조회 {}", userBookDetailGetResponseDto.getJournalEntities().get(0).getTitle());
 
         //then
         assertThat(userBookDetailGetResponseDto).isNotNull();
         assertThat(userBookDetailGetResponseDto.getTitle()).isEqualTo("Spring Boot Guide");
+        assertThat(userBookDetailGetResponseDto.getJournalEntities().size()).isGreaterThan(0);
     }
 }
