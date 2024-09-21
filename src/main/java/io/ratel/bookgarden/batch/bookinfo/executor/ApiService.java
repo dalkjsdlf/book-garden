@@ -1,4 +1,4 @@
-package io.ratel.bookgarden.domain.bookinfo.service;
+package io.ratel.bookgarden.batch.bookinfo.executor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;

@@ -1,4 +1,4 @@
-package io.ratel.bookgarden.domain.bookinfo.component;
+package io.ratel.bookgarden.batch.bookinfo.component;
 
 import org.springframework.stereotype.Component;
 

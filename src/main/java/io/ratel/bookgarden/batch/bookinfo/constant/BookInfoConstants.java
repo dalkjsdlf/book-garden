@@ -1,4 +1,4 @@
-package io.ratel.bookgarden.domain.bookinfo.constant;
+package io.ratel.bookgarden.batch.bookinfo.constant;
 
 public class BookInfoConstants {
 
