@@ -38,8 +38,16 @@ public enum BusinessErrorResult {
     JOURNAL_NOT_FOUND_FOR_REMOVE(HttpStatus.INTERNAL_SERVER_ERROR,"삭제할 독서기록을 찾지 못하였습니다." ),
     JOURNAL_NOT_FOUND_FOR_MODIFY(HttpStatus.INTERNAL_SERVER_ERROR,"수정할 독서기록을 찾지 못하였습니다." ),
     WRONG_JOURNAL_ID(HttpStatus.INTERNAL_SERVER_ERROR,"잘못된 독서기록ID 값입니다." ),
-    JOURNAL_ALREADY_EXISTS_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,"이미 독서기록이 존재합니다." );
+    JOURNAL_ALREADY_EXISTS_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,"이미 독서기록이 존재합니다." ),
 
+    /**
+     * 글귀
+     * */
+    PHRASE_NOT_FOUND(HttpStatus.INTERNAL_SERVER_ERROR, "글귀를 찾지 못하였습니다." ),
+    PHRASE_NOT_FOUND_FOR_REMOVE(HttpStatus.INTERNAL_SERVER_ERROR,"삭제할 글귀을 찾지 못하였습니다." ),
+    PHRASE_NOT_FOUND_FOR_MODIFY(HttpStatus.INTERNAL_SERVER_ERROR,"수정할 글귀을 찾지 못하였습니다." ),
+    WRONG_PHRASE_ID(HttpStatus.INTERNAL_SERVER_ERROR,"잘못된 글귀ID 값입니다." ),
+    PHRASE_ALREADY_EXISTS_ERROR(HttpStatus.INTERNAL_SERVER_ERROR,"이미 글귀이 존재합니다." );
 
     private final HttpStatus httpStatus;
     private final String message;
