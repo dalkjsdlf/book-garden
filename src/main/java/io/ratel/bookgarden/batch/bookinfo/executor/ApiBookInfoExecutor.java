@@ -1,4 +1,4 @@
-package io.ratel.bookgarden.domain.bookinfo.service;
+package io.ratel.bookgarden.batch.bookinfo.executor;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import io.ratel.bookgarden.common.exception.BusinessErrorResult;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-public class ApiBookInfoService {
+public class ApiBookInfoExecutor {
 
     private final ApiService apiService;
 
