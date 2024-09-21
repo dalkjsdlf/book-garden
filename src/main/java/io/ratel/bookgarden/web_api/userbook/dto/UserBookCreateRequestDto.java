@@ -19,7 +19,19 @@ public class UserBookCreateRequestDto {
     private Long bookId;
 
     @NotNull
+    @Positive
+    private Long userId;
+
+    @NotNull
     private Yn readCmpYn;
+
+    public static UserBookEntity fromDto(UserBookCreateRequestDto userBookCreateRequestDto) {
+        return UserBookEntity.builder().
+                bookId(userBookCreateRequestDto.getBookId()).
+                userId(userBookCreateRequestDto.getUserId()).
+                readCmpYn(userBookCreateRequestDto.getReadCmpYn()).
+                build();
+    }
 
     public UserBookEntity toEntity(Long userId) {
         return UserBookEntity.builder()

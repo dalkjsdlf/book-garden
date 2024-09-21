@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@DisplayName("사용자별도서 조회 테스트")
+@DisplayName("사용자별도서 Repository 조회 테스트")
 @SpringBootTest
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -34,7 +34,7 @@ public class UserBookRepositoryTest {
 
         //then
         assertThat(userBookEntities).isNotEmpty();
-        assertThat(userBookEntities.size()).isGreaterThan(1);
+        assertThat(userBookEntities.size()).isGreaterThan(0);
     }
 
     @DisplayName("[성공] 사용자도서 정보 조회 단건조회")

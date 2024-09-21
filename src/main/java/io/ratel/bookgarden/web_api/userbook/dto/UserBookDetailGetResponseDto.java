@@ -3,6 +3,7 @@ package io.ratel.bookgarden.web_api.userbook.dto;
 import io.ratel.bookgarden.domain.Journal.entity.JournalEntity;
 import io.ratel.bookgarden.domain.bookinfo.entity.BookInfoEntity;
 import io.ratel.bookgarden.domain.userbook.entity.UserBookEntity;
+import io.ratel.bookgarden.domain.userbook.entity.Yn;
 import lombok.*;
 
 import java.util.List;
@@ -40,6 +41,8 @@ public class UserBookDetailGetResponseDto {
 
     private String phrase;
 
+    private Yn readCmpYn;
+
     private List<JournalEntity> journalEntities;
 
     private Long reviewId;
@@ -56,6 +59,7 @@ public class UserBookDetailGetResponseDto {
                 author(bookInfoEntity.getAuthor()).
                 description(bookInfoEntity.getDescription()).
                 publisher(bookInfoEntity.getPublisher()).
+                readCmpYn(userBookEntity.getReadCmpYn()).
                 journalEntities(journalEntities).
                 build();
     }

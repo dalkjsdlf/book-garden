@@ -17,7 +17,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-@DisplayName("사용자도서 응용계층 테스트")
+@DisplayName("사용자도서 Application 테스트")
 @SpringBootTest
 @ActiveProfiles("test")
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -30,7 +30,7 @@ public class UserBookApplicationTest {
 
     @DisplayName("[성공] 도서정보 조회")
     @Test
-    public void 사용자_사용자도서조회_사용자도서(){
+    public void given사용자_when사용자도서조회_then사용자도서(){
         //given
         Long userId = 1L;
 
@@ -47,7 +47,7 @@ public class UserBookApplicationTest {
 
     @DisplayName("[성공] 도서정보 조회 상세")
     @Test
-    public void 사용자도서ID_사용자도서조회_사용자도서(){
+    public void given사용자도서ID_when사용자도서조회_then사용자도서(){
         //given
         Long userBookId = 1L;
 
