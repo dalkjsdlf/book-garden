@@ -8,6 +8,9 @@ import lombok.*;
 
 import java.util.List;
 
+/**
+ * The type User book detail get response dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,40 +18,49 @@ import java.util.List;
 @Builder
 public class UserBookDetailGetResponseDto {
 
-    // 사용자책 ID
-    // 책 제목
-    // 책 설명
-    // 저자
-    // 출판사
-    // 글귀 ID
-    // 글귀내용
-    // 기록 ID
-    // 기록내용
-    // 리뷰 ID
-    // 리뷰내용
-
+    /*
+     * 도서 ID
+     */
     private Long bookId;
 
+    /*
+     * 도서명
+     */
     private String title;
 
+    /*
+     * 저자
+     */
     private String author;
 
+    /*
+     * 설명
+     */
     private String description;
 
+    /*
+     * 출판사
+     */
     private String publisher;
 
-    private Long phraseId;
-
-    private String phrase;
-
+    /*
+     * 독서 완료 여부
+     */
     private Yn readCmpYn;
 
+    /*
+     * 독서 기록 목록
+     */
     private List<JournalEntity> journalEntities;
 
-    private Long reviewId;
-
-    private String review;
-
+    /**
+     * From entity user book detail get response dto.
+     *
+     * @param userBookEntity  the user book entity
+     * @param bookInfoEntity  the book info entity
+     * @param journalEntities the journal entities
+     * @return the user book detail get response dto
+     */
     public static UserBookDetailGetResponseDto fromEntity(UserBookEntity userBookEntity,
                                                           BookInfoEntity bookInfoEntity,
                                                           List<JournalEntity> journalEntities

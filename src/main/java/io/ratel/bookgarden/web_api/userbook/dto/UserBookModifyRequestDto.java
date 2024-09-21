@@ -6,6 +6,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+/**
+ * The type User book modify request dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,6 +31,12 @@ public class UserBookModifyRequestDto {
     @NotNull
     private Yn readCmpYn;
 
+    /**
+     * From dto user book entity.
+     *
+     * @param userBookModifyRequestDto the user book modify request dto
+     * @return the user book entity
+     */
     public static UserBookEntity fromDto(UserBookModifyRequestDto userBookModifyRequestDto) {
 
         UserBookEntity userBookEntity = UserBookEntity.builder().

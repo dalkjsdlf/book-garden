@@ -7,6 +7,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
 
+/**
+ * The type User book create request dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,6 +28,12 @@ public class UserBookCreateRequestDto {
     @NotNull
     private Yn readCmpYn;
 
+    /**
+     * From dto user book entity.
+     *
+     * @param userBookCreateRequestDto the user book create request dto
+     * @return the user book entity
+     */
     public static UserBookEntity fromDto(UserBookCreateRequestDto userBookCreateRequestDto) {
         return UserBookEntity.builder().
                 bookId(userBookCreateRequestDto.getBookId()).
@@ -33,6 +42,12 @@ public class UserBookCreateRequestDto {
                 build();
     }
 
+    /**
+     * To entity user book entity.
+     *
+     * @param userId the user id
+     * @return the user book entity
+     */
     public UserBookEntity toEntity(Long userId) {
         return UserBookEntity.builder()
                 .bookId(this.bookId)
