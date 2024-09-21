@@ -3,10 +3,7 @@ package io.ratel.bookgarden.web_api.userbook.dto;
 import io.ratel.bookgarden.domain.bookinfo.entity.BookInfoEntity;
 import io.ratel.bookgarden.domain.userbook.entity.UserBookEntity;
 import io.ratel.bookgarden.domain.userbook.entity.Yn;
-import io.ratel.bookgarden.web_api.journal.dto.JournalGetResponseDto;
 import lombok.*;
-
-import java.util.List;
 
 @Getter
 @Setter
@@ -29,5 +26,6 @@ public class UserBookGetResponseDto {
                 .cover(bookInfoEntity.getCover()) // 실제 로직에 따라 cover를 설정
                 .readCmpYn(userBookEntity.getReadCmpYn())
                 .build();
+
     }
 }

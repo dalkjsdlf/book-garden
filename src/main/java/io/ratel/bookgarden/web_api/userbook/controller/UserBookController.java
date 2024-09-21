@@ -5,6 +5,7 @@ import io.ratel.bookgarden.web_api.userbook.application.UserBookApplication;
 import io.ratel.bookgarden.web_api.userbook.dto.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,12 @@ import java.util.List;
  * </p>
  *
  * @author 최연호
- * @date 2024-08-27
+ * @date 2024 -08-27
  */
 @RestController
 @RequestMapping("/api/v1/userbooks")
 @RequiredArgsConstructor
+@Slf4j
 public class UserBookController {
 
     private final UserBookApplication userBookApplication;
@@ -33,12 +35,21 @@ public class UserBookController {
      * @param userId 요청 헤더의 사용자 ID
      * @return 사용자 도서 목록
      */
-    @GetMapping
-    public ResponseEntity<List<UserBookGetResponseDto>> getAllUserBooks(@RequestHeader(WebApiConst.USER_ID_HEADER) Long userId) {
+    @GetMapping("")
+    public ResponseEntity<List<UserBookGetResponseDto>> getAllUserBooks(
+            @RequestHeader(WebApiConst.USER_ID_HEADER) Long userId) {
+        log.debug("#DEBUG UserBook Controller - getAllUserBooks");
         List<UserBookGetResponseDto> userBooks = userBookApplication.getUserBooks(userId);
         return ResponseEntity.status(HttpStatus.OK).body(userBooks);
     }
 
+    /**
+     * 사용자도서ID로 사용자도서 조회.
+     *
+     * @param id     the id
+     * @param userId the user id
+     * @return the user book by id
+     */
     @GetMapping("/{id}")
     public ResponseEntity<UserBookDetailGetResponseDto> getUserBookById(@PathVariable Long id,
                                                                         @RequestHeader(WebApiConst.USER_ID_HEADER) Long userId) {
@@ -46,25 +57,70 @@ public class UserBookController {
         return ResponseEntity.status(HttpStatus.OK).body(userBook);
     }
 
-    @PostMapping
-    public ResponseEntity<UserBookResponseDto> createUserBook(@Valid @RequestBody UserBookCreateRequestDto requestDto,
+    /**
+     * Create user book response entity.
+     *
+     * @param requestDto the request dto
+     * @param userId     the user id
+     * @return the response entity
+     */
+    @PostMapping("")
+    public ResponseEntity<Void> createUserBook(@Valid @RequestBody UserBookCreateRequestDto requestDto,
                                                               @RequestHeader(WebApiConst.USER_ID_HEADER) Long userId) {
-        UserBookResponseDto createdUserBook = userBookApplication.createUserBook(requestDto, userId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdUserBook);
+        log.debug("#DEBUG UserBook Controller - createUserBook");
+        requestDto.setUserId(userId);
+        boolean isCreated = userBookApplication.createUserBook(requestDto);
+
+        if (isCreated) {
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
     }
 
+    /**
+     * Modify user book response entity.
+     *
+     * @param id         the id
+     * @param requestDto the request dto
+     * @param userId     the user id
+     * @return the response entity
+     */
     @PutMapping("/{id}")
-    public ResponseEntity<UserBookResponseDto> updateUserBook(@PathVariable Long id,
-                                                         @Valid @RequestBody UserBookUpdateRequestDto requestDto,
+    public ResponseEntity<UserBookResponseDto> modifyUserBook(@PathVariable Long id,
+                                                         @Valid @RequestBody UserBookModifyRequestDto requestDto,
                                                          @RequestHeader(WebApiConst.USER_ID_HEADER) Long userId) {
-        UserBookResponseDto updatedUserBookDto = userBookApplication.updateUserBook(requestDto, id, userId);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedUserBookDto);
+
+        /**
+         * userId, Id, Dto setting
+         * */
+        requestDto.setId(id);
+        requestDto.setUserId(userId);
+
+        boolean isModified = userBookApplication.modifyUserBook(requestDto);
+
+        if (isModified) {
+            return ResponseEntity.ok().build();
+        }else{
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
     }
 
+    /**
+     * Remove user book response entity.
+     *
+     * @param id     the id
+     * @param userId the user id
+     * @return the response entity
+     */
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserBook(@PathVariable Long id,
+    public ResponseEntity<Void> removeUserBook(@PathVariable Long id,
                                                @RequestHeader(WebApiConst.USER_ID_HEADER) Long userId) {
-        userBookApplication.deleteUserBook(id, userId);
-        return ResponseEntity.noContent().build();
+        boolean isDeleted = userBookApplication.removeUserBook(id);
+        if (isDeleted) {
+            return ResponseEntity.ok().build();
+        }else {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
     }
 }

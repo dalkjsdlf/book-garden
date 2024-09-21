@@ -10,7 +10,6 @@ public interface UserBookRepository{
     List<UserBookEntity> selectByUserId(Long userId);
     Optional<UserBookEntity> selectByUserIdAndBookId(Long userId, Long bookId);
     Optional<UserBookEntity> selectById(Long id);
-    void insert(UserBookEntity userBookEntity);
-    void update(UserBookEntity userBookEntity);
-    void deleteById(Long id);
+    UserBookEntity save(UserBookEntity userBookEntity);
+    Long deleteById(Long id);
 }
