@@ -11,6 +11,10 @@ import java.util.Optional;
 
 import static io.ratel.bookgarden.domain.userbook.entity.QUserBookEntity.userBookEntity;
 
+/**
+ * The type User book repository.
+ * [UserBook][Repository]
+ */
 @Component
 @RequiredArgsConstructor
 @Repository

@@ -5,6 +5,9 @@ import io.ratel.bookgarden.domain.userbook.entity.UserBookEntity;
 import io.ratel.bookgarden.domain.userbook.entity.Yn;
 import lombok.*;
 
+/**
+ * The type User book get response dto.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,6 +21,13 @@ public class UserBookGetResponseDto {
     private String publisher;
     private Yn readCmpYn;
 
+    /**
+     * From entity user book get response dto.
+     *
+     * @param userBookEntity the user book entity
+     * @param bookInfoEntity the book info entity
+     * @return the user book get response dto
+     */
     public static UserBookGetResponseDto fromEntity(UserBookEntity userBookEntity,
                                                     BookInfoEntity bookInfoEntity) {
         return UserBookGetResponseDto.builder()
