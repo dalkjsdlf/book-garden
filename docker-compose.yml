@@ -10,12 +10,10 @@ services:
       MYSQL_USER: bgdown
       MYSQL_PASSWORD: dusghchl3891!
       TZ: 'Asia/Seoul'
-      PROFILE: dev
     ports:
       - "3306:3306"
     volumes:
-      - msqlbgd-conf:/etc/mysql
-      # MySQL 데이터 파일 경로 (호스트의 경로:컨테이너의 경로)
+      - msqlbgd-conf:/etc/mysql/conf.d
       - msqlbgd-data:/var/lib/mysql
     command:
       - "mysqld"
@@ -25,18 +23,18 @@ services:
       - book-garden_test_network
 
   application:
+    image: book-garden-application
     container_name: book-garden
     restart: on-failure
     build:
-      context: ./
       dockerfile: Dockerfile
     ports:
       - "8500:8500"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/bookgarden
+      SPRING_DATASOURCE_URL: jdbc:mysql://database:3306/bookgarden?useSSL=false&allowPublicKeyRetrieval=true
       SPRING_DATASOURCE_USERNAME: "bgdown"
       SPRING_DATASOURCE_PASSWORD: "dusghchl3891!"
-      PROFILE: local
+      PROFILE: dev
     depends_on:
       - database
     networks:

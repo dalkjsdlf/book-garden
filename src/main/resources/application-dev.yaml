@@ -3,22 +3,24 @@ spring:
     activate:
       on-profile: dev_profile
   datasource-msqlbgd:
+    initialization-mode: never
     driver-class-name: com.mysql.cj.jdbc.Driver
     jdbc-url: ${SPRING_DATASOURCE_URL}
     username: ${SPRING_DATASOURCE_USERNAME}
     password: ${SPRING_DATASOURCE_PASSWORD}
   jpa:
-    generate-ddl: 'true'
-    defer-datasource-initialization: true
+    generate-ddl: 'false'
+    defer-datasource-initialization: false
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
     properties:
       hibernate:
         format_sql: true
         show_sql: true
         use_sql_comments: true
         hibernate.default_batch_fetch_size: 100
+        dialect: org.hibernate.dialect.MySQLDialect
   sql:
     init:
       mode: always

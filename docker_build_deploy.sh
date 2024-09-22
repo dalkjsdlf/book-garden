@@ -8,7 +8,7 @@ APP_CONTAINER_NAME="book-garden"
 RUNNING_CONTAINER=$(docker ps --filter "name=${DB_CONTAINER_NAME}" -q)
 
 if [ -n "$RUNNING_CONTAINER" ]; then
-    echo "Container '${DB_CONTAINER_NAME}' is running. Stopping and removing it."
+    echo "Container '${DB_CONTAINER_NAME}' is ruaptnning. Stopping and removing it."
 
     echo "Container '${DB_CONTAINER_NAME}' is started to stop"
     # 컨테이너 중지
@@ -21,6 +21,9 @@ if [ -n "$RUNNING_CONTAINER" ]; then
     echo "Container '${DB_CONTAINER_NAME}' has been removed."
     echo "Container '${DB_CONTAINER_NAME}' has been stopped and removed."
 fi
+
+APP_IMAGE_NAME="book-garden-application"
+RUNNING_IMAGE=$(docker images --filter "reference=${APP_IMAGE_NAME}" -q)
 
 RUNNING_CONTAINER=$(docker ps --filter "name=${CONTAINER_NAME}" -q)
 
@@ -37,7 +40,19 @@ if [ -n "$RUNNING_CONTAINER" ]; then
     docker rm ${APP_CONTAINER_NAME}
     echo "Container '${APP_CONTAINER_NAME}' has been removed."
     echo "Container '${APP_CONTAINER_NAME}' has been stopped and removed."
+    docker image rm book-garden-application
 fi
+
+if [ -n "$RUNNING_IMAGE" ]; then
+    echo "Image '${APP_IMAGE_NAME}' is running. Removing it."
+
+    echo "Image '${APP_IMAGE_NAME}' is started to remove"
+    # 이미지 삭제
+    docker image rm ${APP_IMAGE_NAME}
+    echo "Image '${APP_IMAGE_NAME}' has been removed."
+    echo "Image '${APP_IMAGE_NAME}' has been removed."
+fi
+
 
 # 2. Docker Volume 체크 함수
 check_and_create_volume() {
@@ -65,6 +80,9 @@ echo "Volume check and creation process completed."
 cd $STDP/03_ToyProjects/book-garden
 
 echo "docker compose start"
+
+docker-compose build --no-cache
+docker-compose down
 docker-compose up -d --build
 echo "docker compose done"
 

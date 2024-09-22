@@ -3,9 +3,10 @@ COPY gradle gradle
 COPY gradlew .
 COPY build.gradle .
 COPY src src
+COPY resources resources
 COPY settings.gradle .
 RUN chmod +X ./gradlew
-RUN ./gradlew bootJar
+RUN ./gradlew clean bootJar
 
 FROM openjdk:17
 LABEL authors="dorris"
