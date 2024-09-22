@@ -1,0 +1,51 @@
+services:
+  database:
+    container_name: msqlbgd8
+    image: mysql:8.0
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: bookgarden
+      MYSQL_ROOT_HOST: '%'
+      MYSQL_ROOT_PASSWORD: dusghchl3891!
+      MYSQL_USER: bgdown
+      MYSQL_PASSWORD: dusghchl3891!
+      TZ: 'Asia/Seoul'
+      PROFILE: dev
+    ports:
+      - "3306:3306"
+    volumes:
+      - msqlbgd-conf:/etc/mysql
+      # MySQL 데이터 파일 경로 (호스트의 경로:컨테이너의 경로)
+      - msqlbgd-data:/var/lib/mysql
+    command:
+      - "mysqld"
+      - "--character-set-server=utf8mb4"
+      - "--collation-server=utf8mb4_unicode_ci"
+    networks:
+      - book-garden_test_network
+
+  application:
+    container_name: book-garden
+    restart: on-failure
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - "8500:8500"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/bookgarden
+      SPRING_DATASOURCE_USERNAME: "bgdown"
+      SPRING_DATASOURCE_PASSWORD: "dusghchl3891!"
+      PROFILE: local
+    depends_on:
+      - database
+    networks:
+      - book-garden_test_network
+
+volumes:
+  msqlbgd-data:  # MySQL 데이터 파일 볼륨
+  msqlbgd-conf:  # MySQL 설정 파일 볼륨
+
+networks:
+  book-garden_test_network:
+    driver: bridge
